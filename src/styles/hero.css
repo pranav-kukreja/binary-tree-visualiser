@@ -1,0 +1,56 @@
+.hero {
+  height: 80vh; /* Full viewport height */
+  background: #fafafa; /* Light background similar to Instagram's */
+  /* color: #262626; Instagram-like dark gray text */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 40px 20px;
+  position: relative;
+}
+.gradient-text {
+    background: linear-gradient(115deg, #f9ce34, #ee2a7b, #6228d7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+.hero-title {
+  position: absolute;
+  top: 40px; /* top-centered */
+  width: 100%;
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+  text-align: center;
+  letter-spacing: 1.2px;
+}
+
+.hero-subtitle {
+  margin-top: auto; /* pushes it down */
+  font-size: 1.5rem;
+  max-width: 600px;
+  margin-bottom: 50px;
+  font-weight: 500;
+  color: #2e7cf1; /* lighter shade for subtitle */
+}
+
+.hero-btn {
+  background-color: #f97316; /* Orange */
+  border: none;
+  padding: 15px 40px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 60px; /* some spacing below */
+}
+
+.hero-btn:hover {
+  background-color: #ea580c; /* Darker Orange */
+}

@@ -1,7 +1,9 @@
 import tree from "./data/SampleTree";
 import TreeNode from "./components/TreeNode";
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./styles/tree.css";
+import "./styles/hero.css"; // make sure hero styles are imported here
+import Hero from "./components/Hero";
 
 function getInorderTraversal(node) {
   if (!node) return [];
@@ -35,6 +37,12 @@ export default function App() {
   const [result, setResult] = useState([]);
   const intervalRef = useRef(null);
 
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+  }, []);
   function handleTraversal(order) {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -64,15 +72,43 @@ export default function App() {
   }
 
   return (
-    <div>
-      <h1>Tree Traversal Visualiser</h1>
-      <div>
-        <button onClick={() => handleTraversal("inorder")}>inorder</button>
-        <button onClick={() => handleTraversal("preorder")}>preorder</button>
-        <button onClick={() => handleTraversal("postorder")}>postorder</button>
-      </div>
-      <TreeNode node={tree} highlight={highlight} />
-      <div className="result-arr">Traversal Order: {result.join(" ")}</div>
-    </div>
+    <>
+      <Hero />
+      <main
+        id="visualiser"
+        style={{
+          padding: "40px 20px",
+          backgroundColor: "#f3f4f6",
+          minHeight: "100vh",
+          fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+        }}
+      >
+        <h1 className="gradient-text">Tree Traversal Visualiser</h1>
+        <div style={{ marginBottom: "20px" }}>
+          <button
+            className="visualising-btn"
+            onClick={() => handleTraversal("inorder")}
+          >
+            Inorder
+          </button>
+          <button
+            className="visualising-btn"
+            onClick={() => handleTraversal("preorder")}
+          >
+            Preorder
+          </button>
+          <button
+            className="visualising-btn"
+            onClick={() => handleTraversal("postorder")}
+          >
+            Postorder
+          </button>
+        </div>
+        <TreeNode node={tree} highlight={highlight} />
+        <div className="result-arr" style={{ marginTop: "20px" }}>
+          Traversal Order: {result.join(" ")}
+        </div>
+      </main>
+    </>
   );
 }
